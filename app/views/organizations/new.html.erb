@@ -1,0 +1,9 @@
+<h1>Organizations#new</h1>
+<p>Find me in app/views/organizations/new.html.erb</p>
+<%= form_with model: @organization do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :email %>
+<%= form.text_field :email %>
+<%= form.submit "Create organization" %>
+<% end %>
