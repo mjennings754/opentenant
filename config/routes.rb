@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "dashboard" => 'dashboard#home'
+  controller :sessions do
+    get "login" => :new
+    post "login" => :create
+    get "logout" => :destroy
+  end
+  
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
