@@ -1,2 +1,17 @@
 <h1>Users#new</h1>
 <p>Find me in app/views/users/new.html.erb</p>
+<%= form_with model: @user do |form| %>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname %>
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+    <%= form.submit "Create user" %>
+<% end %>

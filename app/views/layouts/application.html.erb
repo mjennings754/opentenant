@@ -22,7 +22,9 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
+  <% if notice %>
+  <p><%= notice %></p>
+  <% end %>
   <body>
     <%= yield %>
   </body>
