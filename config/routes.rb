@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :organizations
+  get "invitations/new"
+  resources :organizations do
+    resources :members
+    resources :invitations, only: [:new, :create]
+  end
   get "dashboard" => 'dashboard#home'
   controller :sessions do
     get "login" => :new
@@ -20,4 +24,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "/invitations/accept", to: "invitations#accept", as: :accept_invitation
 end

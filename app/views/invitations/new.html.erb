@@ -1,0 +1,9 @@
+<h1>Invitations#new</h1>
+<p>Find me in app/views/invitations/new.html.erb</p>
+<%= form_with model: [@invitable, @invitation], local: true do |form| %>
+<%= form.label :email %>
+<%= form.email_field :email %>
+<%= form.label :role %>
+<%= form.text_field :role %>
+<%= form.submit "Send invitation" %>
+<% end %>
