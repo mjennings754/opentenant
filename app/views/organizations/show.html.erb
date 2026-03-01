@@ -1,4 +1,4 @@
 <p>[ <%= @organization.name %> ]</p>
 <% @property.each do |property| %>
-<%= property.address_line_one %>
+<%= link_to property.address_line_one, [@organization, property] %>
 <% end %>
