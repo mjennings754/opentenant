@@ -11,4 +11,12 @@ module SessionsHelper
     def logged_in?
         !current_user.nil?
     end
+
+    def require_login
+        if session[:user_id]
+            :ok
+        else
+            redirect_to login_path
+        end
+    end
 end
