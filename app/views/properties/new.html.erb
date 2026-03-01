@@ -1,0 +1,15 @@
+<h1>Properties#new</h1>
+<p>Find me in app/views/properties/new.html.erb</p>
+<%= form_with(model: [@organization, @property]) do |form| %>
+    <%= form.label :address_line_one %>
+    <%= form.text_field :address_line_one %>
+    <%= form.label :address_line_two %>
+    <%= form.text_field :address_line_two %>
+    <%= form.label :postcode %>
+    <%= form.text_field :postcode %>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+    <%= form.submit "Add property" %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_040540) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_120949) do
   create_table "invitations", force: :cascade do |t|
     t.datetime "accepted_at"
     t.datetime "created_at", null: false
@@ -47,6 +47,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_040540) do
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.string "address_line_one"
+    t.string "address_line_two"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.integer "organization_id", null: false
+    t.string "postcode"
+    t.string "state"
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_properties_on_organization_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
@@ -61,4 +73,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_040540) do
   add_foreign_key "members", "organizations"
   add_foreign_key "members", "users"
   add_foreign_key "organizations", "users"
+  add_foreign_key "properties", "organizations"
 end
