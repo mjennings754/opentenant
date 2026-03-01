@@ -22,6 +22,11 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <footer>
+  <% if logged_in? %>
+  <%= session.id %> | [<%= current_user.id %>] <%= current_user.username %> | <%= link_to "Signout", logout_path %>
+  <% end %>
+  </footer>
   <% if notice %>
   <p><%= notice %></p>
   <% end %>

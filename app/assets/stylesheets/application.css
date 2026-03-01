@@ -1,3 +1,17 @@
 input {
     display: block;
 }
+footer {
+    margin-bottom: 0;
+    width:100%;
+    position: absolute;
+    bottom: 0;
+    height:25px;
+    background-color: #06454a;
+    left: 0;
+    color: white;
+
+    a {
+        color:blue;
+    }
+}
