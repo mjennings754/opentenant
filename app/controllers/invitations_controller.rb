@@ -2,6 +2,7 @@ class InvitationsController < ApplicationController
   def new
     @invitable = find_invitable
     @invitation = @invitable.invitations.new
+    @parent = @invitable.is_a?(Property) ? @invitable.organization : @invitable
   end
 
   def create
@@ -12,7 +13,7 @@ class InvitationsController < ApplicationController
 
     if @invitation.save
       InvitationMailer.invite_user(@invitation).deliver_later
-      redirect_to @invitation.invitable, notice: "Invitation has been sent"
+      redirect_to redirect_path_for(@invitation.invitable), notice: "Invitation has been sent"
     else
       render :new
     end
@@ -40,19 +41,31 @@ class InvitationsController < ApplicationController
 
     create_invitable_member(@invitation.invitable, current_user)
 
-    redirect_to @invitation.invitable, notice: "Invitation accepted and you are now a member"
+    redirect_to redirect_path_for(@invitation.invitable), notice: "Invitation accepted and you are now a member"
   end
 
   def find_invitable
-    Organization.find(params[:organization_id])
+    if params[:property_id]
+      Property.find(params[:property_id])
+    elsif params[:organization_id]
+      Organization.find(params[:organization_id])
+    end
   end
 
   def user_already_member?(invitable, user)
     if invitable.is_a?(Organization)
       invitable.members.exists?(user_id: user.id)
-    else
-       false
+    elsif invitable.is_a?(Property)
+      invitable.tenants.exists?(user_id: user.id)
     end
+  end
+
+  def redirect_path_for(invitable)
+      if invitable.is_a?(Property)
+          [invitable.organization, invitable]
+      else
+          invitable
+      end
   end
 
   private
@@ -60,13 +73,24 @@ class InvitationsController < ApplicationController
   def create_invitable_member(invitable, user)
     if invitable.is_a?(Organization)
       create_organization_member(invitable, user)
+    elsif invitable.is_a?(Property)
+      create_property_tenant(invitable, user)
     end
   end
+
   def create_organization_member(organization, user)
     if organization.members.exists?(user_id: user.id)
       redirect_to dashboard_path, notice: "User is already apart of the organization"
     else
       organization.members.create(user: user, role: @invitation.role)
+    end
+  end
+
+  def create_property_tenant(property, user)
+    if property.tenants.exists?(user_id: user.id)
+      redirect_to redirect_path_for(property), notice: "User is already a tenant"
+    else
+      property.tenants.create!(user: user)
     end
   end
 

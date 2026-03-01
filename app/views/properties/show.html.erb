@@ -1,3 +1,4 @@
 <h1>Properties#show</h1>
 <p>Find me in app/views/properties/show.html.erb</p>
 <%= @property.address %>
+<%= link_to "Add a tenant to this property", new_organization_property_invitation_path(@organization, @property) %>
