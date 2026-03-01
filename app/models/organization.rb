@@ -1,5 +1,6 @@
 class Organization < ApplicationRecord
   validates_uniqueness_of :name, :email
+  validates_presence_of :name
   belongs_to :user
   has_many :members, dependent: :destroy
   has_many :users, through: :members
