@@ -3,3 +3,7 @@
 <% @organizations.each do |organization| %>
     <%= link_to organization.name, organization %>
 <% end %>
+<p>properties</p>
+<% @properties.each do |property| %>
+    <%= link_to property.address, [property.organization, property] %>
+<% end %>
