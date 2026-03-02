@@ -6,11 +6,9 @@ class SessionsTest < ApplicationSystemTestCase
   end
 
   test "should sign in user" do
-    visit login_path
-    fill_in "Email", with: @user.email
-    fill_in "Password", with: "secret"
-    click_button "Sign in"
-    visit dashboard_path
+    login(@user)
+    sleep(2)
+    visit dashboard_url
     assert_current_path dashboard_path
   end
 end

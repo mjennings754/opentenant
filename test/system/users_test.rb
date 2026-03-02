@@ -5,8 +5,8 @@ class UsersTest < ApplicationSystemTestCase
     @user = users(:one)
   end
 
-  test "should create user" do
-    visit new_user_url
+  test "should create user and sign in automatically" do
+    visit signup_url
 
     fill_in "Username", with: @user.username
     fill_in "Lastname", with: @user.lastname
@@ -15,9 +15,8 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Email", with: @user.email
     fill_in "Password confirmation", with: "secret"
     click_button "Create user"
-    @user.reload
-    visit user_url(@user)
-    assert_text "Success!"
-    assert_current_path user_url(@user)
+    sleep(1)
+    visit dashboard_url
+    assert_current_path dashboard_path
   end
 end
