@@ -21,7 +21,11 @@ class User < ApplicationRecord
     end
   end
 
-  def unverified
+  def verified?
+    self.verified == true
+  end
+
+  def unverified?
     self.verified == false
   end
 end

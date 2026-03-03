@@ -31,6 +31,15 @@ class UsersController < ApplicationController
       redirect_to login_path, notice: "Invalid token"
     end
   end
+
+  def resend_verification
+    if current_user&.unverified?
+      UserMailer.email_verification(current_user).deliver_now
+      redirect_to dashboard_path, notice: "Verification email resent"
+    else
+      redirect_to dashboard_path, notice: "error"
+    end
+  end
   
   private
 

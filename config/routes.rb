@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "verify_email", to: "users#verify_email", as: 'verify_email'
+  post "resend_verification", to: "users#resend_verification", as: :resend_verification
   get "/invitations/accept", to: "invitations#accept", as: :accept_invitation
 end

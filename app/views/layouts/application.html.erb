@@ -24,8 +24,8 @@
     <%= javascript_importmap_tags %>
   </head>
   <% if logged_in? %>
-  <% if current_user.unverified %>
-  Your account has not yet been verified
+  <% if current_user.unverified? %>
+  Your account has not yet been verified <%= button_to "Resend verification email", resend_verification_path, method: :post %>
   <% end %>
   <header>
   <div class="globalbar">
