@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  before_action :authenticate_user, only: %i[show]
   def index
   end
 
@@ -25,6 +26,14 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+  def authenticate_user
+    @organization = Organization.find(params[:id])
+    unless @organization.owner?(current_user) || @organization.users.exists?(current_user.id)
+
+    redirect_to dashboard_path
+    end
+  end
 
   def organization_params
     params.expect(organization: [:name, :email])
