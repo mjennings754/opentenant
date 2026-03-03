@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_03_203433) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_213956) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -117,6 +117,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_203433) do
     t.string "password_digest"
     t.datetime "updated_at", null: false
     t.string "username"
+    t.string "verification_token"
+    t.boolean "verified", default: false
+    t.index ["verification_token"], name: "index_users_on_verification_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

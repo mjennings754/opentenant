@@ -1,6 +1,9 @@
 <h1><%= @property.address %></h1>
 <p><%= link_to "Create issue", new_organization_property_issue_path(@organization, @property) if @property.tenant?(current_user) %></p>
 <%= link_to "Add a tenant to this property", new_organization_property_invitation_path(@organization, @property) if current_user == @organization.user %>
+<% @property.tenants.each do |tenant| %>
+    <p><%= link_to tenant.user.username, user_path(tenant.user) %></p>
+<% end %>
 <% if @property.issues.exists? %>
 <% @property.issues.each do |issue| %>
     <%= link_to issue.title, [@organization, @property, issue] %>

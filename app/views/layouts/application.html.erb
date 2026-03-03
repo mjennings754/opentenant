@@ -24,6 +24,9 @@
     <%= javascript_importmap_tags %>
   </head>
   <% if logged_in? %>
+  <% if current_user.unverified %>
+  Your account has not yet been verified
+  <% end %>
   <header>
   <div class="globalbar">
   <div class="globalbar-start">

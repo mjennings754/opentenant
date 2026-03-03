@@ -13,3 +13,6 @@
 <% @properties.each do |property| %>
     <%= link_to property.address, [property.organization, property] %>
 <% end %>
+<% @created_organizations.each do |organization| %>
+    <%= link_to organization.name, organization %>
+<% end %>

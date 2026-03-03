@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  before_create :generate_verification_token
   validates_presence_of :username, :email, :firstname, :lastname
   has_many :members
   has_many :organizations, through: :members
@@ -8,5 +9,19 @@ class User < ApplicationRecord
   has_many :properties, through: :tenants
   def all_organizations
     organizations.or(created_organizations).distinct
+  end
+
+  def generate_verification_token
+    self.verification_token = SecureRandom.hex(10)
+  end
+
+  def verify_email(token)
+    if self.verification_token == token
+      update(verified: true, verification_token: nil)
+    end
+  end
+
+  def unverified
+    self.verified == false
   end
 end
