@@ -12,5 +12,9 @@ class Property < ApplicationRecord
       state,
       postcode
     ].reject(&:blank?).join(', ')
-end
+  end
+
+  def tenant?(user)
+    users.exists?(user.id)
+  end
 end

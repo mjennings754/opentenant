@@ -1,5 +1,11 @@
-<h1>Dashboard#home</h1>
-<p>Find me in app/views/dashboard/home.html.erb</p>
+<div class="globalbar">
+<div class="globalbar-start">
+<h2>Dashboard</h2>
+</div>
+<div class="globalbar-end">
+<%= link_to "Create an organization", new_organization_path, class: 'btn' %>
+</div>
+</div>
 <% @organizations.each do |organization| %>
     <%= link_to organization.name, organization %>
 <% end %>

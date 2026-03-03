@@ -11,6 +11,10 @@ class IssuesController < ApplicationController
         @issue = @property.issues.build
     end
 
+    def show
+        @issue = Issue.find(params[:id])
+    end
+
     def create
         @property = Property.find(params[:property_id])
         @organization = Organization.find(params[:organization_id])

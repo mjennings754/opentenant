@@ -1,4 +1,5 @@
 <p>[ <%= @organization.name %> ]</p>
+<p><%= link_to "Add a new property", new_organization_property_path(@organization) %></p>
 <% @property.each do |property| %>
 <%= link_to property.address_line_one, [@organization, property] %>
 <% end %>
