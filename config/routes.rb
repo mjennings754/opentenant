@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :organizations do
     resources :properties do
         resources :issues do
+          resources :comments
           member do
             patch :update_status
           end

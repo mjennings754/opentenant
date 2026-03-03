@@ -1,0 +1,4 @@
+<%= form_with(model: [@organization, @property, @issue, @issue.comments.build]) do |form| %>
+<%= form.text_area :body %>
+<%= form.submit %>
+<% end %>
