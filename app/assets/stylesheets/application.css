@@ -53,7 +53,7 @@ header {
 body {
     margin-top:45px;
 }
-input {
+input, textarea, select {
     display: block;
     border-color:#d0d7de;
     border-style: solid;
@@ -63,6 +63,8 @@ input {
     outline: none;
     font-family: inherit;
     margin-bottom: 4px;
+    resize: vertical;
+    font-size: inherit;
 }
 .input-block {
     display: block;
@@ -71,6 +73,10 @@ input {
 .container-session {
     max-width:224px;
     margin: auto;
+}
+.container-main {
+    max-width: 768px;
+    margin:auto;
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight:500;

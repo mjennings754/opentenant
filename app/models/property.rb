@@ -3,6 +3,7 @@ class Property < ApplicationRecord
   has_many :invitations, as: :invitable
   has_many :tenants
   has_many :users, through: :tenants
+  has_many :issues
   def address
     [
       address_line_one,

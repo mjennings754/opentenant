@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_01_215027) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_193632) do
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.datetime "accepted_at"
     t.datetime "created_at", null: false
@@ -26,6 +54,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_215027) do
     t.index ["invitable_type", "invitable_id"], name: "index_invitations_on_invitable"
     t.index ["invited_user_id"], name: "index_invitations_on_invited_user_id"
     t.index ["inviter_type", "inviter_id"], name: "index_invitations_on_inviter"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.datetime "incident_date"
+    t.integer "property_id", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["property_id"], name: "index_issues_on_property_id"
+    t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -78,7 +118,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_01_215027) do
     t.string "username"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "invitations", "users", column: "invited_user_id"
+  add_foreign_key "issues", "properties"
+  add_foreign_key "issues", "users"
   add_foreign_key "members", "organizations"
   add_foreign_key "members", "users"
   add_foreign_key "organizations", "users"

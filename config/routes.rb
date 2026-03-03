@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get "invitations/new"
   resources :organizations do
     resources :properties do
+        resources :issues
       resources :invitations, only: [:new, :create]
     end
     resources :members

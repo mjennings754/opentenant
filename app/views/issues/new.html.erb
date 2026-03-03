@@ -1,0 +1,10 @@
+<h2>Add a new issue</h2>    
+<%= form_with(model: [@organization, @property, @issue]) do |form| %>
+<%= form.label :title %>
+<%= form.text_field :title, class: 'input-block' %>
+<%= form.label :description %>
+<%= form.text_area :description, class: 'input-block' %>
+<%= form.label :datetime %>
+<%= form.datetime_field :incident_date %>
+<%= form.submit %>
+<% end %>
