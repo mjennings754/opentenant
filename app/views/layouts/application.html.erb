@@ -23,8 +23,30 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <% if logged_in? %>
   <header>
+  <div class="globalbar">
+  <div class="globalbar-start">
+  <%= link_to "openTenant", dashboard_path, class: 'app-link' %>
+  </div>
+  <div class="globalbar-end">
+  <%= link_to current_user.username, current_user, class:'onboarding-cta' %>
+  </div>
+  </div>
   </header>
+  <% else %>
+  <header>
+  <div class="globalbar">
+  <div class="globalbar-start">
+  <%= link_to "openTenant", login_path, class: 'app-link' %>
+  </div>
+  <div class="globalbar-end">
+  <%= link_to "Sign in", login_path, class:'onboarding-cta' %>
+  <%= link_to "Create an account", signup_path, class: 'onboarding-btn' %>
+  </div>
+  </div>
+  </header>
+  <% end %>
   <div class="application-separator"></div>
   <footer>
   <% if logged_in? %>

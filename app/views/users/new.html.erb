@@ -1,17 +1,18 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class="container-session mt-10">
+<h4>Create your openTenant account</h4>
 <%= form_with model: @user do |form| %>
     <%= form.label :username %>
-    <%= form.text_field :username %>
+    <%= form.text_field :username, class: 'input-block' %>
     <%= form.label :firstname %>
-    <%= form.text_field :firstname %>
+    <%= form.text_field :firstname, class: 'input-block' %>
     <%= form.label :lastname %>
-    <%= form.text_field :lastname %>
+    <%= form.text_field :lastname, class: 'input-block' %>
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: 'input-block' %>
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: 'input-block' %>
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-    <%= form.submit "Create user" %>
+    <%= form.password_field :password_confirmation, class: 'input-block' %>
+    <%= form.submit "Create an account", class: 'btn btn-block' %>
 <% end %>
+</div>
