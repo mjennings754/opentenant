@@ -9,4 +9,8 @@ class Organization < ApplicationRecord
   def add_member(user, role: 'member')
     members.create(user: user, role: role)
   end
+
+  def owner?(user)
+    user.present? && user_id == user.id
+  end
 end

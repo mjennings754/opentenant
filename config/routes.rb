@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   get "invitations/new"
   resources :organizations do
     resources :properties do
-        resources :issues
+        resources :issues do
+          member do
+            patch :update_status
+          end
+        end
       resources :invitations, only: [:new, :create]
     end
     resources :members

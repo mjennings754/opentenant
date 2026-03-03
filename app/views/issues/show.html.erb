@@ -1,2 +1,10 @@
 <%= @issue.title %>
 <p><%= @issue.description %></p>
+<%= @issue.status %>
+<% if @organization.owner?(current_user) %>
+<% Issue::STATUSES.each do |status| %>
+    <%= button_to status,
+        update_status_organization_property_issue_path(@organization, @property, @issue, status: status),
+        method: :patch %>
+<% end %>
+<% end %>
