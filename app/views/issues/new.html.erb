@@ -6,5 +6,7 @@
 <%= form.text_area :description, class: 'input-block' %>
 <%= form.label :datetime %>
 <%= form.datetime_field :incident_date %>
+<%= form.label :upload_image %>
+<%= form.file_field :images, multiple: true %>
 <%= form.submit %>
 <% end %>

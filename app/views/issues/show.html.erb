@@ -1,6 +1,9 @@
 <%= @issue.title %>
 <p><%= @issue.description %></p>
 <%= @issue.status %>
+<% @issue.images.each do |img| %>
+    <%= image_tag(img, size: '300x300') %>
+<% end %>
 <% if @organization.owner?(current_user) %>
 <% Issue::STATUSES.each do |status| %>
     <%= button_to status,

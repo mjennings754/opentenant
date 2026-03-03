@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
-    before_action :set_property, :set_issue
+    before_action :set_property
+    before_action :set_issue, except: [:new, :create]
     def index
 
     end
@@ -33,8 +34,6 @@ class IssuesController < ApplicationController
         @issue = @property.issues.find(params[:id])
     end
 
-
-
     private
 
     def set_property
@@ -43,6 +42,6 @@ class IssuesController < ApplicationController
     end
 
     def issue_params
-        params.expect(issue: [:title, :description, :incident_date])
+        params.expect(issue: [:title, :description, :incident_date, images: []])
     end
 end
