@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "home/index"
   get "invitations/new"
   resources :organizations do
     resources :properties do
@@ -37,4 +38,5 @@ Rails.application.routes.draw do
   get "verify_email", to: "users#verify_email", as: 'verify_email'
   post "resend_verification", to: "users#resend_verification", as: :resend_verification
   get "/invitations/accept", to: "invitations#accept", as: :accept_invitation
+  root "home#index"
 end

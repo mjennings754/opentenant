@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def verify_email
@@ -38,6 +39,15 @@ class UsersController < ApplicationController
       redirect_to dashboard_path, notice: "Verification email resent"
     else
       redirect_to dashboard_path, notice: "error"
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy!
+      redirect_to signup_path
+    else
+      redirect_to @user
     end
   end
   

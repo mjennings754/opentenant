@@ -5,7 +5,7 @@ class Organization < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :users, through: :members
   has_many :invitations, as: :invitable, dependent: :destroy
-  has_many :properties
+  has_many :properties, dependent: :destroy
   def add_member(user, role: 'member')
     members.create(user: user, role: role)
   end

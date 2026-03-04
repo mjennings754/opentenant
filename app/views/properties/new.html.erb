@@ -1,5 +1,5 @@
-<h1>Properties#new</h1>
-<p>Find me in app/views/properties/new.html.erb</p>
+<div class="container-session">
+<h2>Add a property</h2>
 <%= form_with(model: [@organization, @property]) do |form| %>
     <%= form.label :address_line_one %>
     <%= form.text_field :address_line_one %>
@@ -13,3 +13,4 @@
     <%= form.text_field :state %>
     <%= form.submit "Add property" %>
 <% end %>
+</div>

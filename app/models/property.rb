@@ -1,9 +1,9 @@
 class Property < ApplicationRecord
   belongs_to :organization
-  has_many :invitations, as: :invitable
-  has_many :tenants
+  has_many :invitations, as: :invitable, dependent: :destroy
+  has_many :tenants, dependent: :destroy
   has_many :users, through: :tenants
-  has_many :issues
+  has_many :issues, dependent: :destroy
   def address
     [
       address_line_one,

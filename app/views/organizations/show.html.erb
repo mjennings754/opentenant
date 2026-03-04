@@ -1,5 +1,9 @@
+<div class="globalbar">
 <p>[ <%= @organization.name %> ]</p>
-<p><%= link_to "Add a new property", new_organization_property_path(@organization) %></p>
+<div class="globalbar-end">
+<p><%= link_to "Add a new property", new_organization_property_path(@organization), class: 'btn' %></p>
+</div>
+</div>
 <% @property.each do |property| %>
 <%= link_to property.address_line_one, [@organization, property] %>
 <% end %>

@@ -30,7 +30,7 @@ class PropertiesController < ApplicationController
 
   def authenticate_user
     @property = Property.find(params[:id])
-    unless @property.users.exists?(current_user.id)
+    unless @property.users.exists?(current_user.id) || @property.organization.user == current_user
 
     redirect_to dashboard_path
     end
