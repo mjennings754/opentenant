@@ -1,7 +1,8 @@
 require "test_helper"
 
 class InvitationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save without email" do
+    invitation = Invitation.new
+    assert_not invitation.save
+  end
 end
