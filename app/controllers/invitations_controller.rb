@@ -1,4 +1,5 @@
 class InvitationsController < ApplicationController
+  before_action :authenticate_user, only: %i[new]
   def new
     @invitable = find_invitable
     @invitation = @invitable.invitations.new
@@ -69,6 +70,14 @@ class InvitationsController < ApplicationController
   end
 
   private
+
+  def authenticate_user
+    @organization = Organization.find_by(params[:id])
+    unless current_user == @organization.user
+
+    redirect_to dashboard_path
+    end
+  end
 
   def create_invitable_member(invitable, user)
     if invitable.is_a?(Organization)

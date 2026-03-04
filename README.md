@@ -1,24 +1,17 @@
-# README
+<h2>openTenant</h2>
+<p>openTenant is a web-based application built for tenants/REAs. It supports many features, including:
+<ul>
+    <li>Bringing up issues with REA</li>
+    <li>Communication between all tenants and the agent</li>
+</ul>
+<h3>Running the application</h3>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+bundle install
+rails db:migrate
+rails s
+```
+<h3>Note</h3>
+<p>I currently have some more ideas to help it add value, feel free to create a PR either for feedback/ideas.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* WILL UPDATE UI TONIGHT</p>

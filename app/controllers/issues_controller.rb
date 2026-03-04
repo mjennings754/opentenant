@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
     before_action :set_property
     before_action :set_issue, except: [:new, :create]
+    before_action :authenticate_user, only:%i[show]
     def index
 
     end
@@ -35,6 +36,14 @@ class IssuesController < ApplicationController
     end
 
     private
+
+    def authenticate_user
+    unless @organization.owner?(current_user) || @organization.users.exists?(current_user.id) || @property.users.exists?(current_user.id)
+
+        redirect_to dashboard_path
+    end
+end
+
 
     def set_property
         @property = Property.find(params[:property_id])

@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_organization
+  before_action :authenticate_user, only: %i[show]
   def index
   end
 
@@ -26,6 +27,14 @@ class PropertiesController < ApplicationController
   end
 
   private
+
+  def authenticate_user
+    @property = Property.find(params[:id])
+    unless @property.users.exists?(current_user.id)
+
+    redirect_to dashboard_path
+    end
+  end
 
   def set_organization
     @organization = Organization.find(params[:organization_id])
