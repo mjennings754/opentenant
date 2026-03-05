@@ -65,3 +65,7 @@ input, select, textarea {
     color:black;
     text-decoration: none;
 }
+fieldset {
+    background-color: #d4edff;
+    border: 0;
+}

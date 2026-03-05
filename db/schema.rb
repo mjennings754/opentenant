@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_03_222050) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_05_030704) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -89,6 +89,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_222050) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
+  create_table "notices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.integer "property_id", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["property_id"], name: "index_notices_on_property_id"
+    t.index ["user_id"], name: "index_notices_on_user_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
@@ -141,6 +152,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_222050) do
   add_foreign_key "issues", "users"
   add_foreign_key "members", "organizations"
   add_foreign_key "members", "users"
+  add_foreign_key "notices", "properties"
+  add_foreign_key "notices", "users"
   add_foreign_key "organizations", "users"
   add_foreign_key "properties", "organizations"
   add_foreign_key "tenants", "properties"

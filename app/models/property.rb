@@ -4,6 +4,7 @@ class Property < ApplicationRecord
   has_many :tenants, dependent: :destroy
   has_many :users, through: :tenants
   has_many :issues, dependent: :destroy
+  has_many :notices, dependent: :destroy
   def address
     [
       address_line_one,

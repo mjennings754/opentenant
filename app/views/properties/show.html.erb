@@ -1,4 +1,17 @@
 <h1><%= @property.address %></h1>
+<div class="globalbar">
+<h2>Notices</h2>
+<div class="globalbar-end">
+<% if @organization.owner?(current_user) %>
+<%= link_to "Add notice", new_organization_property_notice_path(@organization, @property), class: 'btn' %>
+<% end %>
+</div>
+</div>
+<fieldset>
+<% @property.notices.each do |notice| %>
+<p><%= link_to notice.title, organization_property_notice_path(@organization, @property, notice) %> [ <%= notice.created_at.localtime %>]</p>
+<% end %>
+</fieldset>
 <%= link_to "Add a tenant to this property", new_organization_property_invitation_path(@organization, @property) if current_user == @organization.user %>
 <p>Tenants:</p>
 <% @property.tenants.each do |tenant| %>
