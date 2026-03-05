@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :properties, through: :tenants
   has_many :invitations, foreign_key: :invited_user_id, dependent: :destroy
   has_many :issues, dependent: :destroy
+  validates_uniqueness_of :username, :email
   def all_organizations
     organizations.or(created_organizations).distinct
   end

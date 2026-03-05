@@ -1,2 +1,5 @@
 <%= link_to "Previous page", :back, class: 'btn' %>
-<%= @notice.title %>
+<h2><%= @notice.title %></h2>
+<p><%= @notice.description %></p>
+<hr>
+<p>Created by: <%= @notice.user.username %> at <%= @notice.created_at.localtime %></p>
