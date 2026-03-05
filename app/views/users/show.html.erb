@@ -2,4 +2,15 @@
 <p>Account since: <%= @user.created_at.localtime %></p>
 <% if current_user == @user %>
 <%= button_to "Delete my account", @user, method: :delete, class: 'btn' %>
+<p>Change your password</p>
+<%= form_for @user, method: :put, local: true do |form| %>
+    <%= hidden_field_tag :return_to, request.original_url %>
+    <%= form.label :current_password %>
+    <%= form.password_field :current_password %>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation, placeholder: "Confirm" %>
+    <%= form.submit "Update password", class: 'btn-primary' %>
+<% end %>
 <% end %>

@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   get "invitations/new"
   resources :organizations do
     resources :properties do
+          resources :invitations, only: [:new, :create]
         resources :issues do
           resources :comments
           member do
             patch :update_status
           end
         end
-      resources :invitations, only: [:new, :create]
     end
     resources :members
     resources :invitations, only: [:new, :create]

@@ -50,8 +50,35 @@ class UsersController < ApplicationController
       redirect_to @user
     end
   end
+
+  def update
+    if password_update_requested?
+      update_password
+    end
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user.authenticate(params[:user][:current_password])
+      if @user.update(password_params)
+        redirect_to params[:return_to], notice: "Password was successfully changed"
+      else
+        render :edit
+      end
+    else
+      redirect_to params[:return_to], notice: "Incorrect password"
+    end
+  end
   
   private
+
+  def password_update_requested?
+    params[:user][:password].present? && params[:user][:password_confirmation].present?
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 
   def user_params
     params.expect(user: [:username, :firstname, :lastname, :email, :password, :password_confirmation])
